@@ -7,6 +7,11 @@ function newGame() {
   // Game div
   var boardHtml = document.getElementById('game');
 
+  // Clear game div of last game
+  while(boardHtml.firstChild) {
+    boardHtml.removeChild(boardHtml.firstChild);
+  }
+
   // Create 9 game slots
   for(var i=0; i < 9; i++){
     var slot = document.createElement('div');
@@ -50,8 +55,10 @@ function endCheck(board) {
   || (slots[2].className != 'slot' && slots[2].className == slots[5].className && slots[2].className == slots[8].className)
   // Check diagonal lines
   || (slots[0].className != 'slot' && slots[0].className == slots[4].className && slots[0].className == slots[8].className)
-  || (slots[2].className != 'slot' && slots[2].className == slots[4].className && slots[2].className == slots[6].className))
+  || (slots[2].className != 'slot' && slots[2].className == slots[4].className && slots[2].className == slots[6].className)){
     alert('Player ' + (playerTurn + 1) + ' wins!');
+    newGame();
+  }
 }
 
 // Initialise game
