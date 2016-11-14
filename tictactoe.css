@@ -3,7 +3,7 @@ body{
   text-align: center;
 }
 
-.game{
+#game{
   width: 250px;
   height: 250px;
   background: #000;
