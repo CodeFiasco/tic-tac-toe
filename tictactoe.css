@@ -1,3 +1,55 @@
 body{
-  background: #EAEAEA
+  background: #EAEAEA;
+  text-align: center;
+}
+
+.game{
+  width: 250px;
+  height: 250px;
+  background: #000;
+  margin: 0 auto;
+}
+
+.slot{
+  width: 80px;
+  height: 80px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  background: #FFF;
+  float: left;
+  cursor: pointer;
+  position: relative;
+}
+
+.slot:nth-of-type(3n){
+  margin-right: 0;
+}
+
+.slot.circle::after{
+  content: '';
+  display: block;;
+  width: 60px;
+  height: 60px;
+  margin: 5px;
+  border-radius: 50%;
+  border: 5px solid #000;
+  cursor: default;
+}
+
+.slot.x::after, .slot.x::before{
+  content: '';
+  display: block;
+  width: 80px;
+  border-top: 5px solid #000;
+  position: absolute;
+  top: 37px;
+  left: 0;
+}
+
+.slot.x::after{
+  transform: rotate(45deg);
+}
+
+.slot.x::before{
+  transform: rotate(-45deg);
 }
