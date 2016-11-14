@@ -56,9 +56,22 @@ function endCheck(board) {
   // Check diagonal lines
   || (slots[0].className != 'slot' && slots[0].className == slots[4].className && slots[0].className == slots[8].className)
   || (slots[2].className != 'slot' && slots[2].className == slots[4].className && slots[2].className == slots[6].className)){
-    alert('Player ' + (playerTurn + 1) + ' wins!');
-    newGame();
+    if(confirm('Player ' + (playerTurn + 1) + ' wins! New Game?'))
+      newGame();
   }
+
+  // Check if all slots are full
+  if(slots[0].className != 'slot' && slots[1].className != 'slot' && slots[2].className != 'slot' &&
+     slots[3].className != 'slot' && slots[4].className != 'slot' && slots[5].className != 'slot' &&
+     slots[6].className != 'slot' && slots[7].className != 'slot' && slots[8].className != 'slot'){
+    if(confirm('It\'s a tie! New Game?'))
+      newGame();
+  }
+}
+
+// Check if all slots in array are used
+function checkUsed(slot) {
+  return slot.className != 'slot';
 }
 
 // Initialise game
