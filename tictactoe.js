@@ -1,3 +1,6 @@
+// Number of board games
+var boardsNum = 4;
+
 // Player Variables
 var playerClasses = ['circle', 'x'],
     playerTurn = [];
@@ -87,4 +90,4 @@ function endCheck(board, idx) {
 }
 
 // Initialise game
-createBoards(4)
+createBoards(boardsNum)
