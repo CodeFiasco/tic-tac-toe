@@ -3,11 +3,33 @@ body{
   text-align: center;
 }
 
-#game{
+h1{
+  font-size: 3.5rem;
+  color: #FA2;
+  font-family: "Lucida Console", Monaco, monospace;
+  font-weight: bold;
+  margin: 5px 0 15px;
+}
+
+#game-list{
+  width: 100%;
+  max-width: 620px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: flex-start;
+  margin: 0 auto;
+  padding: 0;
+  list-style-type: none;
+}
+
+.game{
   width: 250px;
   height: 250px;
   background: #000;
-  margin: 0 auto;
+  border: 5px solid #000;
+  border-radius: 5px;
+  margin-bottom: 30px;
 }
 
 .slot{
@@ -25,14 +47,22 @@ body{
   margin-right: 0;
 }
 
+.slot.circle{
+  background: #F55;
+}
+
+.slot.x{
+  background: #55F;
+}
+
 .slot.circle::after{
   content: '';
   display: block;;
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   margin: 5px;
   border-radius: 50%;
-  border: 5px solid #000;
+  border: 15px solid #FFF;
   cursor: default;
 }
 
@@ -40,9 +70,9 @@ body{
   content: '';
   display: block;
   width: 80px;
-  border-top: 5px solid #000;
+  border-top: 15px solid #FFF;
   position: absolute;
-  top: 37px;
+  top: 32px;
   left: 0;
 }
 

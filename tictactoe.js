@@ -1,12 +1,28 @@
 // Player Variables
 var playerClasses = ['circle', 'x'],
-    playerTurn = 0;
+    playerTurn = [];
+
+// Create boards
+function createBoards(num) {
+  var boardList = document.getElementById('game-list');
+
+  // Create each board
+  for(var i=0; i < num; i++){
+    var board = document.createElement('li');
+    board.className = 'game';
+
+    // Add tracker to player turn array
+    playerTurn.push(0)
+
+    // Append slot to game div
+    boardList.appendChild(board);
+    // Initialise Game on this board
+    newGame(board, i);
+  }
+}
 
 // Create a new board game
-function newGame() {
-  // Game div
-  var boardHtml = document.getElementById('game');
-
+function newGame(boardHtml, idx) {
   // Clear game div of last game
   while(boardHtml.firstChild) {
     boardHtml.removeChild(boardHtml.firstChild);
@@ -18,7 +34,7 @@ function newGame() {
     slot.className = 'slot';
 
     // Add click event listener
-    slot.addEventListener('click', handleClick);
+    slot.addEventListener('click', handleClick.bind(null, idx));
 
     // Append slot to game div
     boardHtml.appendChild(slot);
@@ -26,23 +42,23 @@ function newGame() {
 }
 
 // Handle slot click
-function handleClick(event) {
+function handleClick(idx, event) {
   slot = event.target;
 
   // Check if the slot hasn't been picked yet
   if(slot.className == 'slot'){
     // Add the player class to the slot
-    slot.className = 'slot ' + playerClasses[playerTurn];
+    slot.className = 'slot ' + playerClasses[playerTurn[idx]];
     // Check if the game has come to an end
-    endCheck(slot.parentElement);
+    endCheck(slot.parentElement, idx);
 
     // Change player turns
-    playerTurn = (playerTurn ? 0 : 1);
+    playerTurn[idx] = (playerTurn[idx] ? 0 : 1);
   }
 }
 
 // Check if game has ended
-function endCheck(board) {
+function endCheck(board, idx) {
   slots = board.childNodes;
 
   // Check horizontal lines
@@ -56,23 +72,19 @@ function endCheck(board) {
   // Check diagonal lines
   || (slots[0].className != 'slot' && slots[0].className == slots[4].className && slots[0].className == slots[8].className)
   || (slots[2].className != 'slot' && slots[2].className == slots[4].className && slots[2].className == slots[6].className)){
-    if(confirm('Player ' + (playerTurn + 1) + ' wins! New Game?'))
-      newGame();
+    if(confirm('Player ' + (playerTurn[idx] + 1) + ' wins on board ' + (idx + 1) + '! New Game?'))
+      newGame(board, idx);
   }
 
   // Check if all slots are full
-  if(slots[0].className != 'slot' && slots[1].className != 'slot' && slots[2].className != 'slot' &&
+  else if
+    (slots[0].className != 'slot' && slots[1].className != 'slot' && slots[2].className != 'slot' &&
      slots[3].className != 'slot' && slots[4].className != 'slot' && slots[5].className != 'slot' &&
      slots[6].className != 'slot' && slots[7].className != 'slot' && slots[8].className != 'slot'){
-    if(confirm('It\'s a tie! New Game?'))
-      newGame();
+        if(confirm('It\'s a tie on board ' + (idx + 1) + '! New Game?'))
+          newGame(board, idx);
   }
 }
 
-// Check if all slots in array are used
-function checkUsed(slot) {
-  return slot.className != 'slot';
-}
-
 // Initialise game
-newGame()
+createBoards(4)
