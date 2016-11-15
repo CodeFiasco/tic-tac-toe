@@ -1,4 +1,4 @@
-// Number of board games
+// Number of board games (maximum 10)
 var boardsNum = 4;
 
 // Player Variables
@@ -86,6 +86,18 @@ function endCheck(board, idx) {
      slots[6].className != 'slot' && slots[7].className != 'slot' && slots[8].className != 'slot'){
         if(confirm('It\'s a tie on board ' + (idx + 1) + '! New Game?'))
           newGame(board, idx);
+  }
+}
+
+// Listen to keypress
+document.onkeypress = function(key) {
+  // Check if key is pressed is between 0 and 9
+  if(key.keyCode >= 48 && key.keyCode <= 57){
+    boards = document.getElementById('game-list').childNodes;
+
+    // Reset board
+    if(key.keyCode - 48 < boards.length -1)
+      newGame(boards[key.keyCode - 48], key.keyCode - 48);
   }
 }
 
