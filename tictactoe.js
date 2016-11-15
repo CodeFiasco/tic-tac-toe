@@ -75,7 +75,7 @@ function endCheck(board, idx) {
   // Check diagonal lines
   || (slots[0].className != 'slot' && slots[0].className == slots[4].className && slots[0].className == slots[8].className)
   || (slots[2].className != 'slot' && slots[2].className == slots[4].className && slots[2].className == slots[6].className)){
-    if(confirm('Player ' + (playerTurn[idx] + 1) + ' wins on board ' + (idx + 1) + '! New Game?'))
+    if(confirm('Player ' + (playerTurn[idx] + 1) + ' wins on board ' + (idx) + '! New Game?'))
       newGame(board, idx);
   }
 
@@ -84,7 +84,7 @@ function endCheck(board, idx) {
     (slots[0].className != 'slot' && slots[1].className != 'slot' && slots[2].className != 'slot' &&
      slots[3].className != 'slot' && slots[4].className != 'slot' && slots[5].className != 'slot' &&
      slots[6].className != 'slot' && slots[7].className != 'slot' && slots[8].className != 'slot'){
-        if(confirm('It\'s a tie on board ' + (idx + 1) + '! New Game?'))
+        if(confirm('It\'s a tie on board ' + (idx) + '! New Game?'))
           newGame(board, idx);
   }
 }
@@ -101,5 +101,5 @@ document.onkeypress = function(key) {
   }
 }
 
-// Initialise game
+// Initialise games
 createBoards(boardsNum)
