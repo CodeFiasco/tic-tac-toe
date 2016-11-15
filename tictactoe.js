@@ -96,7 +96,7 @@ document.onkeypress = function(key) {
     boards = document.getElementById('game-list').childNodes;
 
     // Reset board
-    if(key.keyCode - 48 < boards.length -1)
+    if(key.keyCode - 48 < boards.length)
       newGame(boards[key.keyCode - 48], key.keyCode - 48);
   }
 }
